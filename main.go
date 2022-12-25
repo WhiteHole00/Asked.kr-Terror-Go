@@ -22,16 +22,16 @@ func main() {
 	fmt.Print("ENTER COUNT >> ")
 	fmt.Scanln(&count)
 
+	var BaseURL string = ("https://asked.kr/" + id)
+	resp_, err := http.Get(BaseURL)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer resp_.Body.Close()
+
 	for i := 0; i < count; i++ {
-		var BaseURL string = ("https://asked.kr/" + id)
-		resp_, err := http.Get(BaseURL)
-
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		defer resp_.Body.Close()
-
 		data := url.Values{
 			"id":           {id},
 			"content":      {content},
