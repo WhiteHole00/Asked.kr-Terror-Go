@@ -51,5 +51,5 @@ func main() {
 
 	}
 
-	fmt.Println("질문 완료!")
+	fmt.Println("질문 완료! | " + id + " | " + content)
 }
