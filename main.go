@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -45,9 +44,7 @@ func main() {
 			log.Fatal(e)
 		}
 
-		var res map[string]interface{}
-
-		json.NewDecoder(resp.Body).Decode(&res)
+		fmt.Println(resp.StatusCode)
 
 	}
 
