@@ -31,22 +31,24 @@ func main() {
 
 	defer resp_.Body.Close()
 
-	for i := 0; i < count; i++ {
-		data := url.Values{
-			"id":           {id},
-			"content":      {content},
-			"makarong_bat": {"-1"},
-			"show_user":    {"0"}}
+	if resp_.StatusCode == 200 {
+		for i := 0; i < count; i++ {
+			data := url.Values{
+				"id":           {id},
+				"content":      {content},
+				"makarong_bat": {"-1"},
+				"show_user":    {"0"}}
 
-		resp, e := http.PostForm("https://asked.kr/query.php?query=100", data)
+			resp, e := http.PostForm("https://asked.kr/query.php?query=100", data)
 
-		if e != nil {
-			log.Fatal(e)
+			if e != nil {
+				log.Fatal(e)
+			}
+
+			fmt.Println(resp.StatusCode)
+
 		}
 
-		fmt.Println(resp.StatusCode)
-
+		fmt.Println("질문 완료! | " + id + " | " + content)
 	}
-
-	fmt.Println("질문 완료! | " + id + " | " + content)
 }
